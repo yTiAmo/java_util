@@ -9,7 +9,7 @@ public enum PgsqlToJavaEnum {
     //pgsql to java 枚举
     DATE("date","LocalDate"),
     TIME("time","LocalTime"),
-    TIMESTAMP("timestamp ","LocalDateTime"),
+    TIMESTAMP("timestamp","LocalDateTime"),
     VARCHAR("varchar","String"),
     TEXT("String","text"),
     LOCALTIME("time","LocalTime"),

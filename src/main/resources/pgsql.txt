@@ -1,0 +1,339 @@
+CREATE TABLE "public"."stg_qdsjzx_ryjbxx_yh_df" (
+  "rid" varchar(255) COLLATE "pg_catalog"."default",
+  "cym" varchar(255) COLLATE "pg_catalog"."default",
+  "is_kgh" varchar(255) COLLATE "pg_catalog"."default",
+  "syrkzlbdm" varchar(255) COLLATE "pg_catalog"."default",
+  "syrkzlbhz" varchar(255) COLLATE "pg_catalog"."default",
+  "jzdjzwmc" varchar(255) COLLATE "pg_catalog"."default",
+  "hjdjzwmc" varchar(255) COLLATE "pg_catalog"."default",
+  "flag" varchar(255) COLLATE "pg_catalog"."default",
+  "is_zdry" varchar(255) COLLATE "pg_catalog"."default",
+  "etltime" varchar(255) COLLATE "pg_catalog"."default",
+  "dsjzx_taskid" timestamp(6),
+  "qhdm" varchar(50) COLLATE "pg_catalog"."default",
+  "xbdm" varchar(50) COLLATE "pg_catalog"."default",
+  "xbhz" varchar(50) COLLATE "pg_catalog"."default",
+  "mzdm" varchar(50) COLLATE "pg_catalog"."default",
+  "mzhz" varchar(50) COLLATE "pg_catalog"."default",
+  "csrq" timestamp(6),
+  "csdxzqhdm" varchar(50) COLLATE "pg_catalog"."default",
+  "csdxzqhhz" varchar(50) COLLATE "pg_catalog"."default",
+  "csdxz" text COLLATE "pg_catalog"."default",
+  "jgdm" varchar(50) COLLATE "pg_catalog"."default",
+  "syrklbdm" varchar(50) COLLATE "pg_catalog"."default",
+  "jghz" varchar(50) COLLATE "pg_catalog"."default",
+  "hh" varchar(100) COLLATE "pg_catalog"."default",
+  "hlsh" varchar(100) COLLATE "pg_catalog"."default",
+  "fhlsh" varchar(100) COLLATE "pg_catalog"."default",
+  "hjdxzqhdm" varchar(50) COLLATE "pg_catalog"."default",
+  "hjdxzqhhz" varchar(255) COLLATE "pg_catalog"."default",
+  "hjdlmdm" varchar(50) COLLATE "pg_catalog"."default",
+  "hjdlmhz" varchar(255) COLLATE "pg_catalog"."default",
+  "hjdxz" text COLLATE "pg_catalog"."default",
+  "hjdz" text COLLATE "pg_catalog"."default",
+  "syrklbhz" varchar(255) COLLATE "pg_catalog"."default",
+  "hjdyjmp" varchar(50) COLLATE "pg_catalog"."default",
+  "hjdyjmpdsh" varchar(50) COLLATE "pg_catalog"."default",
+  "hjdejmp" varchar(50) COLLATE "pg_catalog"."default",
+  "hjdejmpdsh" varchar(50) COLLATE "pg_catalog"."default",
+  "jzdxzqhdm" varchar(50) COLLATE "pg_catalog"."default",
+  "jzdxzqhhz" varchar(255) COLLATE "pg_catalog"."default",
+  "jzdlmdm" varchar(50) COLLATE "pg_catalog"."default",
+  "jzdlmhz" varchar(255) COLLATE "pg_catalog"."default",
+  "jzdxz" text COLLATE "pg_catalog"."default",
+  "jzdz" text COLLATE "pg_catalog"."default",
+  "zjzldm" varchar(50) COLLATE "pg_catalog"."default",
+  "jzdyjmp" varchar(50) COLLATE "pg_catalog"."default",
+  "jzdyjmpdsh" varchar(50) COLLATE "pg_catalog"."default",
+  "jzdejmp" varchar(50) COLLATE "pg_catalog"."default",
+  "jzdejmpdsh" varchar(50) COLLATE "pg_catalog"."default",
+  "whcddm" varchar(50) COLLATE "pg_catalog"."default",
+  "whcdhz" varchar(255) COLLATE "pg_catalog"."default",
+  "hyzkdm" varchar(50) COLLATE "pg_catalog"."default",
+  "hyzkhz" varchar(255) COLLATE "pg_catalog"."default",
+  "poxm" varchar(255) COLLATE "pg_catalog"."default",
+  "pozjhm" varchar(50) COLLATE "pg_catalog"."default",
+  "zjzlhz" varchar(255) COLLATE "pg_catalog"."default",
+  "zy" varchar(50) COLLATE "pg_catalog"."default",
+  "zylbdm" varchar(50) COLLATE "pg_catalog"."default",
+  "zylbhz" varchar(255) COLLATE "pg_catalog"."default",
+  "fwcs" varchar(255) COLLATE "pg_catalog"."default",
+  "zjxydm" varchar(50) COLLATE "pg_catalog"."default",
+  "zjxyhz" varchar(255) COLLATE "pg_catalog"."default",
+  "byzkdm" varchar(50) COLLATE "pg_catalog"."default",
+  "byzkhz" varchar(255) COLLATE "pg_catalog"."default",
+  "sg" varchar(50) COLLATE "pg_catalog"."default",
+  "xxdm" varchar(50) COLLATE "pg_catalog"."default",
+  "zjhm" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
+  "xxhz" varchar(255) COLLATE "pg_catalog"."default",
+  "zzsydm" varchar(50) COLLATE "pg_catalog"."default",
+  "zzsyhz" varchar(255) COLLATE "pg_catalog"."default",
+  "yhzgxdm" varchar(50) COLLATE "pg_catalog"."default",
+  "yhzgxhz" varchar(255) COLLATE "pg_catalog"."default",
+  "yzjzrgxdm" varchar(50) COLLATE "pg_catalog"."default",
+  "yzjzrgxhz" varchar(255) COLLATE "pg_catalog"."default",
+  "gjdm" varchar(50) COLLATE "pg_catalog"."default",
+  "gjhz" varchar(255) COLLATE "pg_catalog"."default",
+  "ywx" varchar(255) COLLATE "pg_catalog"."default",
+  "xm" varchar(255) COLLATE "pg_catalog"."default",
+  "ywm" varchar(255) COLLATE "pg_catalog"."default",
+  "jwrysfdm" varchar(50) COLLATE "pg_catalog"."default",
+  "jwrysfhz" varchar(255) COLLATE "pg_catalog"."default",
+  "tlsydm" varchar(255) COLLATE "pg_catalog"."default",
+  "tlsyhz" varchar(255) COLLATE "pg_catalog"."default",
+  "rjsj" varchar(255) COLLATE "pg_catalog"."default",
+  "xxjb" varchar(255) COLLATE "pg_catalog"."default",
+  "zzjgdm" varchar(50) COLLATE "pg_catalog"."default",
+  "zzjghz" varchar(255) COLLATE "pg_catalog"."default",
+  "zxgxsj" varchar(255) COLLATE "pg_catalog"."default",
+  "xmqp" varchar(255) COLLATE "pg_catalog"."default",
+  "bz" varchar(255) COLLATE "pg_catalog"."default",
+  "jzfwid" varchar(50) COLLATE "pg_catalog"."default",
+  "hjfwid" varchar(50) COLLATE "pg_catalog"."default",
+  "mapidd" varchar(255) COLLATE "pg_catalog"."default",
+  "jzdzzjgdm" varchar(50) COLLATE "pg_catalog"."default",
+  "jzdzzjghz" varchar(255) COLLATE "pg_catalog"."default",
+  "jlrksj" varchar(255) COLLATE "pg_catalog"."default",
+  "jzdjddm" varchar(50) COLLATE "pg_catalog"."default",
+  "jzdjdhz" varchar(255) COLLATE "pg_catalog"."default",
+  "jzdjwhdm" varchar(50) COLLATE "pg_catalog"."default",
+  "xmsp" varchar(255) COLLATE "pg_catalog"."default",
+  "jzdjwhhz" varchar(255) COLLATE "pg_catalog"."default",
+  "hjdjddm" varchar(50) COLLATE "pg_catalog"."default",
+  "hjdjdhz" varchar(255) COLLATE "pg_catalog"."default",
+  "hjdjwhdm" varchar(50) COLLATE "pg_catalog"."default",
+  "hjdjwhhz" varchar(255) COLLATE "pg_catalog"."default",
+  "hjdzzjgdm" varchar(50) COLLATE "pg_catalog"."default",
+  "hjdzzjghz" varchar(255) COLLATE "pg_catalog"."default",
+  "jzdjzwid" varchar(50) COLLATE "pg_catalog"."default",
+  "hjdjzwid" varchar(50) COLLATE "pg_catalog"."default",
+  "hjmapid" varchar(50) COLLATE "pg_catalog"."default",
+  "yp_taskid" varchar(50) COLLATE "pg_catalog"."default",
+  CONSTRAINT "stg_qdsjzx_ryjbxx_yh_df_pkey" PRIMARY KEY ("zjhm")
+)
+;
+
+ALTER TABLE "public"."stg_qdsjzx_ryjbxx_yh_df"
+  OWNER TO "postgres";
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."rid" IS '人ID';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."cym" IS '曾用名';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."is_kgh" IS '实有人口子类别代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."syrkzlbdm" IS '实有人口子类别汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."syrkzlbhz" IS '居住地建筑物名称';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdjzwmc" IS '户籍地建筑物名称';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdjzwmc" IS '户籍居住地登记人户分离';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."flag" IS '0初始状态1吸毒2刑释解教';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."is_zdry" IS '监控时间';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."etltime" IS 'ETL时间';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."dsjzx_taskid" IS '时间戳';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."qhdm" IS '区划代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."xbdm" IS '性别代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."xbhz" IS '性别汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."mzdm" IS '民族代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."mzhz" IS '民族汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."csrq" IS '出生日期';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."csdxzqhdm" IS '出生地行政区划代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."csdxzqhhz" IS '出生地行政区划汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."csdxz" IS '出生地详址';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jgdm" IS '籍贯代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."syrklbdm" IS '实有人口类别代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jghz" IS '籍贯汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hh" IS '户号';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hlsh" IS '户流水号';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."fhlsh" IS '分户流水号';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdxzqhdm" IS '户籍地行政区划代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdxzqhhz" IS '户籍地行政区划汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdlmdm" IS '户籍地路名代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdlmhz" IS '户籍地路名汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdxz" IS '户籍地详址';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdz" IS '户籍地址';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."syrklbhz" IS '实有人口类别汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdyjmp" IS '户籍地一级门牌';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdyjmpdsh" IS '户籍地一级门牌单双号';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdejmp" IS '户籍地二级门牌';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdejmpdsh" IS '户籍地二级门牌单双号';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdxzqhdm" IS '居住地行政区划代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdxzqhhz" IS '居住地行政区划汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdlmdm" IS '居住地路名代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdlmhz" IS '居住地路名汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdxz" IS '居住地详址';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdz" IS '居住地址';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zjzldm" IS '证件种类代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdyjmp" IS '居住地一级门牌';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdyjmpdsh" IS '居住地一级门牌单双号';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdejmp" IS '居住地二级门牌';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdejmpdsh" IS '居住地二级门牌单双号';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."whcddm" IS '文化程度代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."whcdhz" IS '文化程度汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hyzkdm" IS '婚姻状况代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hyzkhz" IS '婚姻状况汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."poxm" IS '配偶姓名';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."pozjhm" IS '配偶证件号码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zjzlhz" IS '证件种类汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zy" IS '职业';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zylbdm" IS '职业类别代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zylbhz" IS '职业类别汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."fwcs" IS '服务处所';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zjxydm" IS '宗教信仰代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zjxyhz" IS '宗教信仰汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."byzkdm" IS '兵役状况代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."byzkhz" IS '兵役状况汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."sg" IS '身高';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."xxdm" IS '血型代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zjhm" IS '证件号码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."xxhz" IS '血型汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zzsydm" IS '暂住事由代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zzsyhz" IS '暂住事由汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."yhzgxdm" IS '与户主关系代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."yhzgxhz" IS '与户主关系汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."yzjzrgxdm" IS '与主居住人关系代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."yzjzrgxhz" IS '与主居住人关系汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."gjdm" IS '国家代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."gjhz" IS '国家汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."ywx" IS '英文姓';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."xm" IS '姓名';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."ywm" IS '英文名';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jwrysfdm" IS '境外人员身份代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jwrysfhz" IS '境外人员身份汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."tlsydm" IS '停留事由代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."tlsyhz" IS '停留事由汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."rjsj" IS '入境时间';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."xxjb" IS '信息级别';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zzjgdm" IS '组织机构代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zzjghz" IS '组织机构汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."zxgxsj" IS '最新更新时间';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."xmqp" IS '姓名全拼';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."bz" IS '备注';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzfwid" IS '居住房屋ID';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjfwid" IS '户籍房屋ID';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."mapidd" IS '地理编码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdzzjgdm" IS '居住地组织机构代码(户籍人员)';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdzzjghz" IS '居住地组织机构汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jlrksj" IS '记录入库时间';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdjddm" IS '居住地街道代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdjdhz" IS '居住地街道汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdjwhdm" IS '居住地居委会代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."xmsp" IS '姓名首拼';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdjwhhz" IS '居住地居委会汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdjddm" IS '户籍地街道代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdjdhz" IS '户籍地街道汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdjwhdm" IS '户籍地居委会代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdjwhhz" IS '户籍地居委会汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdzzjgdm" IS '户籍地组织机构代码';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdzzjghz" IS '户籍地组织机构汉字';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."jzdjzwid" IS '居住地建筑物ID';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjdjzwid" IS '户籍地建筑物ID';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."hjmapid" IS '是否空挂户';
+
+COMMENT ON COLUMN "public"."stg_qdsjzx_ryjbxx_yh_df"."yp_taskid" IS 'yp批次号';
+
+COMMENT ON TABLE "public"."stg_qdsjzx_ryjbxx_yh_df" IS '人基本信息-殷行治理';
