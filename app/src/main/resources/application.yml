@@ -1,0 +1,55 @@
+server:
+  port: 8801
+  session-timeout: 30
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
+
+
+spring:
+  main:
+    #当遇到相同名字的时候，是否允许覆盖注册
+    allow-bean-definition-overriding: true
+  flyway:
+    enabled: false
+  application:
+    name: app
+  profiles:
+    active: dev
+  # 数据库配置
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      druid:
+        initialSize: 10
+        minIdle: 10
+        maxActive: 20
+        maxWait: 15000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,slf4j,config
+        useGlobalDataSourceStat: true
+        stat:
+          log-slow-sql: true
+          merge-sql: true
+          slow-sql-millis: 10000
+  servlet:
+    # http请求文件大小限制
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+logging:
+  config: classpath:logback.xml
+  level:
+    com.mti.scst.feign.UserFeignService: debug
+    com.mti.framework.consul.watch.ConsulWatch: info
+  file:
+    name: ./logs/${spring.application.name}-${server.port}
+

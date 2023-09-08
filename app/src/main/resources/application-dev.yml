@@ -1,0 +1,10 @@
+﻿spring:
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          driver-class-name: dm.jdbc.driver.DmDriver
+          url: jdbc:postgresql://172.17.7.87:5431/mtidb?stringtype=unspecified
+          username: postgres
+          password: abX123ads
+          driver: org.postgresql.Driver
