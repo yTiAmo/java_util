@@ -1,0 +1,11 @@
+CREATE TABLE "ods_admittanceProject" (
+  "id" int(11) NOT NULL COMMENT '准入项目id',
+  "typeId" varchar(255) DEFAULT NULL COMMENT '项目类别id(FK)',
+  "accessName" varchar(255) DEFAULT NULL COMMENT '项目类别名',
+  "classId" varchar(255) DEFAULT NULL COMMENT '投资分类id(FK)',
+  "createTime" varchar(255) DEFAULT NULL COMMENT '立项时间',
+  "approvalTime" varchar(255) DEFAULT NULL COMMENT '审批时间',
+  "companyId" varchar(255) DEFAULT NULL COMMENT '项目主体（项目单位）',
+  "figure" varchar(255) DEFAULT NULL COMMENT '投资金额',
+  PRIMARY KEY ("id")
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='准入项目事实表';
