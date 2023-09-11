@@ -1,9 +1,9 @@
 package com.strong.wind;
 
 
-import com.strong.wind.file_util.java.CreateJavaModel;
-import com.strong.wind.file_util.java.MysqlToJava;
-import com.strong.wind.file_util.java.PgsqlToJava;
+import com.strong.wind.java.CreateJavaModel;
+import com.strong.wind.java.MysqlToJava;
+import com.strong.wind.java.PgsqlToJava;
 
 import java.io.IOException;
 
