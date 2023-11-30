@@ -55,4 +55,14 @@ public class PgsqlToJava extends CreateJavaModel {
         return resultList;
     }
 
+    @Override
+    public Boolean isShowFieldAnnotation() {
+        return true;
+    }
+
+    @Override
+    public Boolean isAddDataAnnotations() {
+        return false;
+    }
+
 }

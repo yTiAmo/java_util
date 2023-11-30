@@ -1,0 +1,7 @@
+pkid:
+name:名称
+code:code 编码
+sort:排序
+parent_id:父级id
+dic_type:字典类型
+dic_name:字典名称

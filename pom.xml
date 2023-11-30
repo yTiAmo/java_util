@@ -6,6 +6,7 @@
     <modules>
         <module>file_util</module>
         <module>app</module>
+        <module>date_util</module>
     </modules>
 
     <parent>

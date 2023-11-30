@@ -3,49 +3,68 @@ package com.strong.wind.java;
 import cn.hutool.core.io.resource.ClassPathResource;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author ç‹è•¾
- * @åˆ›å»ºæ—¶é—´ 2023/9/6 0006 17:24 å‘¨ä¸‰
- * @æè¿°
+ * @author ÍõÀÙ
+ * @´´½¨Ê±¼ä 2023/9/6 0006 17:24 ÖÜÈı
+ * @ÃèÊö
  */
 public abstract class CreateJavaModel {
 
-    public void start(String text, String outPath, String className, String tableName, String pageName) {
+    public void start(String text, String outPath, String className,
+                      String tableName, String pageName) {
+
         Map<String, JavaModelField> fieldMap = getFieldAndType(text);
         List<JavaModelField> fields = getFieldAndComment(fieldMap, text);
-        // ç”Ÿæˆå®ä½“ç±»ä»£ç 
+        // Éú³ÉÊµÌåÀà´úÂë
         String entityClassCode = generateEntityClass(className,tableName,pageName, fields);
+        System.out.println(entityClassCode);
         try {
             writeToFile(entityClassCode,outPath+className+".java");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        // æ‰“å°ç”Ÿæˆçš„ä»£ç 
-        System.out.println(entityClassCode);
+        // ´òÓ¡Éú³ÉµÄ´úÂë
+
     }
 
 
     /**
-     * æ­£åˆ™è¡¨è¾¾å¼è·å–å­—æ®µåå’Œå­—æ®µç±»å‹
-     * @param text ddlåˆ›å»ºè¯­å¥
+     * ÕıÔò±í´ïÊ½»ñÈ¡×Ö¶ÎÃûºÍ×Ö¶ÎÀàĞÍ
+     * @param text ddl´´½¨Óï¾ä
      * @return Map<String, JavaModelField>
      */
     protected abstract Map<String, JavaModelField> getFieldAndType(String text);
 
     /**
      *
-     * @param fieldMap å­—æ®µé›†åˆ
-     * @param text text ddlåˆ›å»ºè¯­å¥
+     * @param fieldMap ×Ö¶Î¼¯ºÏ
+     * @param text text ddl´´½¨Óï¾ä
      * @return List<JavaModelField>
      */
     public abstract List<JavaModelField> getFieldAndComment(Map<String, JavaModelField> fieldMap, String text);
 
     /**
-     * è¯»å–sqlæ–‡ä»¶å†…å®¹
-     * @param fileName æ–‡ä»¶å
+     * ÊÇ·ñÏÔÊ¾×Ö¶Î×¢½â
+     * @return
+     */
+    public abstract Boolean isShowFieldAnnotation();
+
+    /**
+     * ÊÇ·ñÌí¼Ó@Data×¢½â
+     * Èç¹ûÌí¼Ó²»ÏÔÊ¾get set·½·¨
+     * @return Boolean
+     */
+    public abstract Boolean isAddDataAnnotations();
+
+    /**
+     * ¶ÁÈ¡sqlÎÄ¼şÄÚÈİ
+     * @param fileName ÎÄ¼şÃû
      * @return String
      * @throws IOException IOException
      */
@@ -63,26 +82,35 @@ public abstract class CreateJavaModel {
     }
 
     /**
-     * ç”Ÿæˆjavaæ–‡ä»¶
-     * @param className javaç±»å
-     * @param tableName è¡¨å
-     * @param packageName åŒ…å
-     * @param fields å­—æ®µåˆ—è¡¨
+     * Éú³ÉjavaÎÄ¼ş
+     * @param className javaÀàÃû
+     * @param tableName ±íÃû
+     * @param packageName °üÃû
+     * @param fields ×Ö¶ÎÁĞ±í
      * @return String
      */
-    public String generateEntityClass(String className, String tableName,String packageName, List<JavaModelField> fields) {
+    public String generateEntityClass(String className, String tableName,
+                                      String packageName, List<JavaModelField> fields) {
+        Boolean showFieldAnnotation = isShowFieldAnnotation();
+        Boolean dataAnnotations = isAddDataAnnotations();
         StringBuilder codeBuilder = new StringBuilder();
         codeBuilder.append("package ").append(packageName).append(";").append("\n\n");
         codeBuilder.append("import io.swagger.annotations.ApiModelProperty;").append("\n");
         codeBuilder.append("import com.baomidou.mybatisplus.annotation.TableField;").append("\n");
         codeBuilder.append("import com.baomidou.mybatisplus.annotation.TableName;").append("\n\n\n");
+        if (Boolean.TRUE.equals(dataAnnotations)) {
+            codeBuilder.append("import lombok.Data;").append("\n\n\n");
+            codeBuilder.append("@Data").append("\n");
+        }
         codeBuilder.append("@TableName(\"").append(tableName).append("\")").append("\n");
         codeBuilder.append("public class ").append(className).append(" {\n\n");
 
 
-        // ç”Ÿæˆå­—æ®µ
+        // Éú³É×Ö¶Î
         for (JavaModelField field : fields) {
-            codeBuilder.append("    @TableField(\"").append(field.getFieldName()).append("\") ").append("\n");
+            if (Boolean.TRUE.equals(showFieldAnnotation)) {
+                codeBuilder.append("    @TableField(\"").append(field.getFieldName()).append("\") ").append("\n");
+            }
             codeBuilder.append("    @ApiModelProperty(value = \"").append(field.getComment()).append("\")").append("\n");
             if (field.getFieldName().contains("_")) {
                 field.setFieldName(convertToCamelCase(field.getFieldName()));
@@ -90,25 +118,26 @@ public abstract class CreateJavaModel {
             codeBuilder.append("    private ").append(field.getJavaType()).append(" ").append(field.getFieldName()).append(";\n\n");
         }
 
-        // ç”Ÿæˆ getters å’Œ setters
-        for (JavaModelField field : fields) {
-            String capitalizedFieldName = capitalize(field.getFieldName());
-            codeBuilder.append("    public ").append(field.getJavaType()).append(" get").append(capitalizedFieldName).append("() {\n");
-            codeBuilder.append("        return ").append(field.getFieldName()).append(";\n");
-            codeBuilder.append("    }\n\n");
-            codeBuilder.append("    public void set").append(capitalizedFieldName).append("(").append(field.getJavaType()).append(" ").append(field.getFieldName()).append(") {\n");
-            codeBuilder.append("        this.").append(field.getFieldName()).append(" = ").append(field.getFieldName()).append(";\n");
-            codeBuilder.append("    }\n\n");
+        if (Boolean.TRUE.equals(!dataAnnotations)) {
+            // Éú³É getters ºÍ setters
+            for (JavaModelField field : fields) {
+                String capitalizedFieldName = capitalize(field.getFieldName());
+                codeBuilder.append("    public ").append(field.getJavaType()).append(" get").append(capitalizedFieldName).append("() {\n");
+                codeBuilder.append("        return ").append(field.getFieldName()).append(";\n");
+                codeBuilder.append("    }\n\n");
+                codeBuilder.append("    public void set").append(capitalizedFieldName).append("(").append(field.getJavaType()).append(" ").append(field.getFieldName()).append(") {\n");
+                codeBuilder.append("        this.").append(field.getFieldName()).append(" = ").append(field.getFieldName()).append(";\n");
+                codeBuilder.append("    }\n\n");
+            }
         }
-
         codeBuilder.append("}");
 
         return codeBuilder.toString();
     }
 
     /**
-     * å°†é¦–å­—æ¯å¤§å†™
-     * @param s å­—æ®µå
+     * ½«Ê××ÖÄ¸´óĞ´
+     * @param s ×Ö¶ÎÃû
      * @return String
      */
     public static String capitalize(String s) {
@@ -119,14 +148,14 @@ public abstract class CreateJavaModel {
     }
 
     /**
-     * å°†æ•°æ®åº“å­—æ®µè½¬æˆjavaé©¼å³°å‘½å
+     * ½«Êı¾İ¿â×Ö¶Î×ª³ÉjavaÍÕ·åÃüÃû
      * @param dbFieldName dbFieldName
      * @return
      */
     public static String convertToCamelCase(String dbFieldName) {
         StringBuilder camelCase = new StringBuilder();
 
-        // æ ‡è®°æ˜¯å¦éœ€è¦å°†ä¸‹ä¸€ä¸ªå­—ç¬¦è½¬æ¢ä¸ºå¤§å†™
+        // ±ê¼ÇÊÇ·ñĞèÒª½«ÏÂÒ»¸ö×Ö·û×ª»»Îª´óĞ´
         boolean nextUpperCase = false;
 
         for (int i = 0; i < dbFieldName.length(); i++) {
@@ -148,9 +177,12 @@ public abstract class CreateJavaModel {
     }
 
     public static void writeToFile(String code, String fileName) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+        try (BufferedWriter writer =
+                     new BufferedWriter(
+                             new OutputStreamWriter(
+                                     Files.newOutputStream(Paths.get(fileName)),
+                                     StandardCharsets.UTF_8))) {
             writer.write(code);
-            writer.close();
         }
     }
 }

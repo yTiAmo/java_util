@@ -4,6 +4,7 @@ package com.strong.wind;
 import com.strong.wind.java.CreateJavaModel;
 import com.strong.wind.java.MysqlToJava;
 import com.strong.wind.java.PgsqlToJava;
+import com.strong.wind.java.TextToJava;
 
 import java.io.IOException;
 
@@ -16,8 +17,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         CreateJavaModel pgsqlToJava = new PgsqlToJava();
         CreateJavaModel mysqlToJava = new MysqlToJava();
-        String input = pgsqlToJava.readFile("/templates/pgsql.txt");
-        pgsqlToJava.start(input,"D:\\","StgQdsjzxRyjbxxYhDf",
-                "stg_qdsjzx_ryjbxx_yh_df","com.mti.community.model.person");
+        CreateJavaModel textToJava = new TextToJava(false,true);
+        String input = textToJava.readFile("/templates/filed.txt");
+        textToJava.start(input,"D:\\","DictVO",
+                "z","com.mti.data.tz.vo");
     }
 }
