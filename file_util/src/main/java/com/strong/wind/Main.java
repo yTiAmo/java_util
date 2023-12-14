@@ -1,10 +1,7 @@
 package com.strong.wind;
 
 
-import com.strong.wind.java.CreateJavaModel;
-import com.strong.wind.java.MysqlToJava;
-import com.strong.wind.java.PgsqlToJava;
-import com.strong.wind.java.TextToJava;
+import com.strong.wind.java.*;
 
 import java.io.IOException;
 
@@ -15,11 +12,12 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        CreateJavaModel pgsqlToJava = new PgsqlToJava();
-        CreateJavaModel mysqlToJava = new MysqlToJava();
-        CreateJavaModel textToJava = new TextToJava(false,true);
-        String input = textToJava.readFile("/templates/filed.txt");
-        textToJava.start(input,"D:\\","DictVO",
-                "z","com.mti.data.tz.vo");
+        CreateJavaModel pgsqlToJava = new PgsqlToJava(false,true);
+        CreateJavaModel mysqlToJava = new MysqlToJava(true,true);
+        CreateJavaModel textToJava = new TextToJava(true,true);
+        CreateJavaModel jsonToJava = new JsonToJava(true,true);
+        String input = mysqlToJava.readFile("/templates/mysql.txt");
+        mysqlToJava.start(input,"F:\\daoshu\\project\\java\\ypcj\\mti-community\\mti-community-api\\src\\main\\java\\com\\mti\\community\\model\\data\\","",
+                "","com.mti.community.model.data");
     }
 }

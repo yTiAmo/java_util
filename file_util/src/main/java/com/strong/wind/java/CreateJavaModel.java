@@ -6,13 +6,16 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
- * @author ÍõÀÙ
- * @´´½¨Ê±¼ä 2023/9/6 0006 17:24 ÖÜÈı
- * @ÃèÊö
+ * @author ç‹è•¾
+ * @åˆ›å»ºæ—¶é—´ 2023/9/6 0006 17:24 å‘¨ä¸‰
+ * @æè¿°
  */
 public abstract class CreateJavaModel {
 
@@ -21,7 +24,7 @@ public abstract class CreateJavaModel {
 
         Map<String, JavaModelField> fieldMap = getFieldAndType(text);
         List<JavaModelField> fields = getFieldAndComment(fieldMap, text);
-        // Éú³ÉÊµÌåÀà´úÂë
+        // ç”Ÿæˆå®ä½“ç±»ä»£ç 
         String entityClassCode = generateEntityClass(className,tableName,pageName, fields);
         System.out.println(entityClassCode);
         try {
@@ -29,42 +32,42 @@ public abstract class CreateJavaModel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        // ´òÓ¡Éú³ÉµÄ´úÂë
+        // æ‰“å°ç”Ÿæˆçš„ä»£ç 
 
     }
 
 
     /**
-     * ÕıÔò±í´ïÊ½»ñÈ¡×Ö¶ÎÃûºÍ×Ö¶ÎÀàĞÍ
-     * @param text ddl´´½¨Óï¾ä
+     * æ­£åˆ™è¡¨è¾¾å¼è·å–å­—æ®µåå’Œå­—æ®µç±»å‹
+     * @param text ddlåˆ›å»ºè¯­å¥
      * @return Map<String, JavaModelField>
      */
     protected abstract Map<String, JavaModelField> getFieldAndType(String text);
 
     /**
      *
-     * @param fieldMap ×Ö¶Î¼¯ºÏ
-     * @param text text ddl´´½¨Óï¾ä
+     * @param fieldMap å­—æ®µé›†åˆ
+     * @param text text ddlåˆ›å»ºè¯­å¥
      * @return List<JavaModelField>
      */
     public abstract List<JavaModelField> getFieldAndComment(Map<String, JavaModelField> fieldMap, String text);
 
     /**
-     * ÊÇ·ñÏÔÊ¾×Ö¶Î×¢½â
+     * æ˜¯å¦æ˜¾ç¤ºå­—æ®µæ³¨è§£
      * @return
      */
     public abstract Boolean isShowFieldAnnotation();
 
     /**
-     * ÊÇ·ñÌí¼Ó@Data×¢½â
-     * Èç¹ûÌí¼Ó²»ÏÔÊ¾get set·½·¨
+     * æ˜¯å¦æ·»åŠ @Dataæ³¨è§£
+     * å¦‚æœæ·»åŠ ä¸æ˜¾ç¤ºget setæ–¹æ³•
      * @return Boolean
      */
     public abstract Boolean isAddDataAnnotations();
 
     /**
-     * ¶ÁÈ¡sqlÎÄ¼şÄÚÈİ
-     * @param fileName ÎÄ¼şÃû
+     * è¯»å–sqlæ–‡ä»¶å†…å®¹
+     * @param fileName æ–‡ä»¶å
      * @return String
      * @throws IOException IOException
      */
@@ -72,7 +75,8 @@ public abstract class CreateJavaModel {
         ClassPathResource classPathResource = new ClassPathResource(fileName);
         String path = classPathResource.getAbsolutePath();
         StringBuilder content = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+        InputStreamReader isr = new InputStreamReader(Files.newInputStream(Paths.get(path)), StandardCharsets.UTF_8);
+        try (BufferedReader reader = new BufferedReader(isr)) {
             String line;
             while ((line = reader.readLine()) != null) {
                 content.append(line).append("\n");
@@ -82,15 +86,24 @@ public abstract class CreateJavaModel {
     }
 
     /**
-     * Éú³ÉjavaÎÄ¼ş
-     * @param className javaÀàÃû
-     * @param tableName ±íÃû
-     * @param packageName °üÃû
-     * @param fields ×Ö¶ÎÁĞ±í
+     * ç”Ÿæˆjavaæ–‡ä»¶
+     * @param className javaç±»å
+     * @param tableName è¡¨å
+     * @param packageName åŒ…å
+     * @param fields å­—æ®µåˆ—è¡¨
      * @return String
      */
     public String generateEntityClass(String className, String tableName,
                                       String packageName, List<JavaModelField> fields) {
+
+        // è·å–å½“å‰æ—¶é—´
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        // å®šä¹‰æ—¥æœŸæ—¶é—´æ ¼å¼
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        // æ ¼å¼åŒ–å½“å‰æ—¶é—´
+        String formattedDateTime = currentDateTime.format(formatter);
+
+
         Boolean showFieldAnnotation = isShowFieldAnnotation();
         Boolean dataAnnotations = isAddDataAnnotations();
         StringBuilder codeBuilder = new StringBuilder();
@@ -100,13 +113,17 @@ public abstract class CreateJavaModel {
         codeBuilder.append("import com.baomidou.mybatisplus.annotation.TableName;").append("\n\n\n");
         if (Boolean.TRUE.equals(dataAnnotations)) {
             codeBuilder.append("import lombok.Data;").append("\n\n\n");
+        }
+
+        codeBuilder.append("/**\n" + " * @author ç‹è•¾\n" + " * {@code @åˆ›å»ºæ—¶é—´}  ").append(formattedDateTime).append(" \n").append(" * {@code @æè¿°}\n").append(" */").append("\n");
+        if (Boolean.TRUE.equals(dataAnnotations)) {
             codeBuilder.append("@Data").append("\n");
         }
         codeBuilder.append("@TableName(\"").append(tableName).append("\")").append("\n");
         codeBuilder.append("public class ").append(className).append(" {\n\n");
 
 
-        // Éú³É×Ö¶Î
+        // ç”Ÿæˆå­—æ®µ
         for (JavaModelField field : fields) {
             if (Boolean.TRUE.equals(showFieldAnnotation)) {
                 codeBuilder.append("    @TableField(\"").append(field.getFieldName()).append("\") ").append("\n");
@@ -119,7 +136,7 @@ public abstract class CreateJavaModel {
         }
 
         if (Boolean.TRUE.equals(!dataAnnotations)) {
-            // Éú³É getters ºÍ setters
+            // ç”Ÿæˆ getters å’Œ setters
             for (JavaModelField field : fields) {
                 String capitalizedFieldName = capitalize(field.getFieldName());
                 codeBuilder.append("    public ").append(field.getJavaType()).append(" get").append(capitalizedFieldName).append("() {\n");
@@ -136,8 +153,8 @@ public abstract class CreateJavaModel {
     }
 
     /**
-     * ½«Ê××ÖÄ¸´óĞ´
-     * @param s ×Ö¶ÎÃû
+     * å°†é¦–å­—æ¯å¤§å†™
+     * @param s å­—æ®µå
      * @return String
      */
     public static String capitalize(String s) {
@@ -148,14 +165,14 @@ public abstract class CreateJavaModel {
     }
 
     /**
-     * ½«Êı¾İ¿â×Ö¶Î×ª³ÉjavaÍÕ·åÃüÃû
+     * å°†æ•°æ®åº“å­—æ®µè½¬æˆjavaé©¼å³°å‘½å
      * @param dbFieldName dbFieldName
      * @return
      */
     public static String convertToCamelCase(String dbFieldName) {
         StringBuilder camelCase = new StringBuilder();
 
-        // ±ê¼ÇÊÇ·ñĞèÒª½«ÏÂÒ»¸ö×Ö·û×ª»»Îª´óĞ´
+        // æ ‡è®°æ˜¯å¦éœ€è¦å°†ä¸‹ä¸€ä¸ªå­—ç¬¦è½¬æ¢ä¸ºå¤§å†™
         boolean nextUpperCase = false;
 
         for (int i = 0; i < dbFieldName.length(); i++) {

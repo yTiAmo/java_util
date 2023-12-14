@@ -15,57 +15,50 @@ import java.util.regex.Pattern;
  * @描述
  */
 public class MysqlToJava extends CreateJavaModel{
-
+    private final Boolean isShowFieldAnnotation;
+    private final Boolean isAddDataAnnotations;
+    public MysqlToJava(Boolean isShowFieldAnnotation,Boolean isAddDataAnnotations){
+        this.isShowFieldAnnotation = isShowFieldAnnotation;
+        this.isAddDataAnnotations = isAddDataAnnotations;
+    }
     @Override
     public Map<String, JavaModelField> getFieldAndType(String text) {
         Map<String, JavaModelField> javaModelFieldMap = new HashMap<>();
-        Map<String, PgsqlToJavaEnum> pgsqlTypeToJavaTypeMap = EnumUtil.getEnumMap(PgsqlToJavaEnum.class);
-        for (PgsqlToJavaEnum pgsqlEnum : pgsqlTypeToJavaTypeMap.values()) {
-            String fieldPattern = "\"(\\w+)\" (\\w+)\\((\\d+)\\) (NOT NULL)?( DEFAULT NULL)?( COMMENT '([^']+)')?,";
+        Map<String, MysqlToJavaEnum> mysqlToJavaEnumMap = EnumUtil.getEnumMap(MysqlToJavaEnum.class);
+            String fieldPattern = "((\\w+)|`(\\w+)`)\\s+(\\w+).* comment\\s*('.*?')";
+
             Pattern pattern = Pattern.compile(fieldPattern);
             Matcher matcher = pattern.matcher(text);
 
             while (matcher.find()) {
                 String columnName = matcher.group(1);
-                String columnType = matcher.group(2);
-                String columnSize = matcher.group(3);
-                String comment = matcher.group(7);
+                String columnType = matcher.group(4);
+                MysqlToJavaEnum  mysqlToJavaEnum = mysqlToJavaEnumMap.get(columnType.toUpperCase());
+                String comment = matcher.group(5);
                 JavaModelField javaModelField = new JavaModelField();
                 javaModelField.setFieldName(columnName);
-                javaModelField.setJavaType(pgsqlEnum.getJavaType());
+                javaModelField.setJavaType(mysqlToJavaEnum.getJavaType());
+                javaModelField.setComment(comment);
                 javaModelFieldMap.put(columnName, javaModelField);
             }
-        }
         return javaModelFieldMap;
     }
 
     @Override
     public List<JavaModelField> getFieldAndComment(Map<String, JavaModelField> fieldMap, String text) {
-        String commentPattern = "\"([^\"]+)\" IS '([^\"]+)'";
-        Pattern pattern = Pattern.compile(commentPattern);
-        Matcher matcher = pattern.matcher(text);
         List<JavaModelField> resultList = new ArrayList<>();
-
-        while (matcher.find()) {
-            String columnName = matcher.group(1);
-            if (fieldMap.containsKey(columnName)) {
-                JavaModelField modelField = fieldMap.get(columnName);
-                String comment = matcher.group(2);
-                modelField.setComment(comment);
-                resultList.add(modelField);
-            }
-        }
+        fieldMap.forEach((k,v)-> resultList.add(v));
         return resultList;
     }
 
     @Override
     public Boolean isShowFieldAnnotation() {
-        return true;
+        return isShowFieldAnnotation;
     }
 
     @Override
     public Boolean isAddDataAnnotations() {
-        return false;
+        return isAddDataAnnotations;
     }
 
 

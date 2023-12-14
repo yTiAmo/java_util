@@ -1,11 +1,27 @@
-CREATE TABLE "ods_admittanceProject" (
-  "id" int(11) NOT NULL COMMENT '准入项目id',
-  "typeId" varchar(255) DEFAULT NULL COMMENT '项目类别id(FK)',
-  "accessName" varchar(255) DEFAULT NULL COMMENT '项目类别名',
-  "classId" varchar(255) DEFAULT NULL COMMENT '投资分类id(FK)',
-  "createTime" varchar(255) DEFAULT NULL COMMENT '立项时间',
-  "approvalTime" varchar(255) DEFAULT NULL COMMENT '审批时间',
-  "companyId" varchar(255) DEFAULT NULL COMMENT '项目主体（项目单位）',
-  "figure" varchar(255) DEFAULT NULL COMMENT '投资金额',
-  PRIMARY KEY ("id")
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='准入项目事实表';
+create table if not exists sa01_310110_yp
+(
+sa010001 varchar(500) comment'问题id' primary key
+,sa010002 varchar(500) comment'所属街道名称'
+,sa010003 varchar(500) comment'所属街道代码'
+,sa010004 varchar(500) comment'居委名称'
+,sa010005 varchar(500) comment'居委id'
+,sa010006 varchar(500) comment'问题发生时间'
+,sa010007 varchar(500) comment'预期处理时间'
+,ra010001 varchar(500) comment'人员id'
+,ra010002 varchar(500) comment'人员姓名'
+,sa010010 text comment'人员信息'
+,rc010001 varchar(500) comment'人房关系id'
+,sa010012 text comment'图片'
+,sa010014 text comment'标签'
+,sa010015 varchar(500) comment'问题来源'
+,sa010016 varchar(500) comment'问题类型'
+,sa010017 varchar(500) comment'标题'
+,sa010018 text comment'详细信息'
+,sa010019 text comment'居住地址'
+,sa010020 varchar(500) comment'创建人id'
+,sa010021 varchar(1000) comment'创建人姓名'
+,sa010022 varchar(500) comment'创建时间'
+,sa010023 varchar(500) comment'事发地'
+,op varchar(255) comment ''
+,cdc_operation varchar(255) comment ''
+)comment '杨浦区问题信息数据下发';

@@ -16,6 +16,12 @@ import java.util.regex.Pattern;
  */
 public class PgsqlToJava extends CreateJavaModel {
 
+    private final Boolean isShowFieldAnnotation;
+    private final Boolean isAddDataAnnotations;
+    public PgsqlToJava(Boolean isShowFieldAnnotation,Boolean isAddDataAnnotations){
+        this.isShowFieldAnnotation = isShowFieldAnnotation;
+        this.isAddDataAnnotations = isAddDataAnnotations;
+    }
     @Override
     public Map<String, JavaModelField> getFieldAndType(String text) {
         Map<String, JavaModelField> javaModelFieldMap = new HashMap<>();
@@ -57,12 +63,13 @@ public class PgsqlToJava extends CreateJavaModel {
 
     @Override
     public Boolean isShowFieldAnnotation() {
-        return true;
+        return isShowFieldAnnotation;
     }
 
     @Override
     public Boolean isAddDataAnnotations() {
-        return false;
+        return isAddDataAnnotations;
     }
+
 
 }

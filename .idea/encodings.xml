@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/app/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/date_util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/file_util/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/file_utli/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/file_util/src/main/java/com/strong/wind/java/CreateJavaModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/file_util/src/main/java/com/strong/wind/java/JsonToJava.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/file_util/src/main/java/com/strong/wind/java/TextToJava.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/file_util/src/main/resources/templates/filed.txt" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
