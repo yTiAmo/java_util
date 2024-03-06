@@ -1,23 +1,30 @@
-CREATE TABLE "public"."t_community_line_ledger" (
+CREATE TABLE "public"."t_community_common_phrases" (
   "id_" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
-  "line_id_" varchar(100) COLLATE "pg_catalog"."default",
-  "ledger_type_id_" varchar(100) COLLATE "pg_catalog"."default",
-  "sort_" numeric,
+  "content_" varchar(4000) COLLATE "pg_catalog"."default",
+  "org_id_" varchar(100) COLLATE "pg_catalog"."default",
+  "user_id_" varchar(100) COLLATE "pg_catalog"."default",
+  "sort_" int8,
   "create_time_" timestamp(6),
-  "update_time_" date,
-  "cerate_user_" varchar(100) COLLATE "pg_catalog"."default",
+  "update_time_" timestamp(6),
+  "create_user_" varchar(100) COLLATE "pg_catalog"."default",
   "update_user_" varchar(100) COLLATE "pg_catalog"."default",
-  "deleted_" int2 DEFAULT 0,
-  "valid_" varchar(255) COLLATE "pg_catalog"."default" DEFAULT 1,
-  CONSTRAINT "t_community_line_ledger_pkey" PRIMARY KEY ("id_")
+  "deleted_" int4 DEFAULT 0,
+  "vaild_" int4 DEFAULT 1,
+  CONSTRAINT "changyongyu_pkey" PRIMARY KEY ("id_")
 )
 ;
 
-ALTER TABLE "public"."t_community_line_ledger"
+ALTER TABLE "public"."t_community_common_phrases"
   OWNER TO "postgres";
 
-COMMENT ON COLUMN "public"."t_community_line_ledger"."line_id_" IS '条线id';
+COMMENT ON COLUMN "public"."t_community_common_phrases"."content_" IS '常用语';
 
-COMMENT ON COLUMN "public"."t_community_line_ledger"."ledger_type_id_" IS '台账类型id';
+COMMENT ON COLUMN "public"."t_community_common_phrases"."org_id_" IS '机构id';
 
-COMMENT ON COLUMN "public"."t_community_line_ledger"."create_time_" IS '创建时间';
+COMMENT ON COLUMN "public"."t_community_common_phrases"."user_id_" IS '用户id';
+
+COMMENT ON COLUMN "public"."t_community_common_phrases"."sort_" IS '排序';
+
+COMMENT ON COLUMN "public"."t_community_common_phrases"."create_time_" IS '创建时间';
+
+COMMENT ON COLUMN "public"."t_community_common_phrases"."update_time_" IS '更新时间';

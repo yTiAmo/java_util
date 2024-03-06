@@ -12,12 +12,15 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        CreateJavaModel pgsqlToJava = new PgsqlToJava(false,true);
+        CreateJavaModel pgsqlToJava = new PgsqlToJava(true,true);
         CreateJavaModel mysqlToJava = new MysqlToJava(true,true);
-        CreateJavaModel textToJava = new TextToJava(true,true);
+        CreateJavaModel textToJava = new TextToJava(false,true);
         CreateJavaModel jsonToJava = new JsonToJava(true,true);
-        String input = mysqlToJava.readFile("/templates/mysql.txt");
-        mysqlToJava.start(input,"F:\\daoshu\\project\\java\\ypcj\\mti-community\\mti-community-api\\src\\main\\java\\com\\mti\\community\\model\\data\\","",
-                "","com.mti.community.model.data");
+        String input = textToJava.readFile("/templates/filed.txt");
+        textToJava.start(input,"F:\\daoshu\\project\\java\\ypcj\\mti-community\\mti-community-api\\src\\main\\java\\com\\mti\\community\\bean\\timer\\res\\",
+                "HumanRoomRelationshipRes",
+                "",
+                "com.mti.community.bean.timer.res",
+                "杨浦区人员信息-房屋信息-人房关系");
     }
 }

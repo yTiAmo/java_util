@@ -20,12 +20,12 @@ import java.util.Map;
 public abstract class CreateJavaModel {
 
     public void start(String text, String outPath, String className,
-                      String tableName, String pageName) {
+                      String tableName, String pageName, String description) {
 
         Map<String, JavaModelField> fieldMap = getFieldAndType(text);
         List<JavaModelField> fields = getFieldAndComment(fieldMap, text);
         // 生成实体类代码
-        String entityClassCode = generateEntityClass(className,tableName,pageName, fields);
+        String entityClassCode = generateEntityClass(className,tableName,pageName, fields, description);
         System.out.println(entityClassCode);
         try {
             writeToFile(entityClassCode,outPath+className+".java");
@@ -94,7 +94,8 @@ public abstract class CreateJavaModel {
      * @return String
      */
     public String generateEntityClass(String className, String tableName,
-                                      String packageName, List<JavaModelField> fields) {
+                                      String packageName, List<JavaModelField> fields,
+                                      String description) {
 
         // 获取当前时间
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -115,7 +116,7 @@ public abstract class CreateJavaModel {
             codeBuilder.append("import lombok.Data;").append("\n\n\n");
         }
 
-        codeBuilder.append("/**\n" + " * @author 王蕾\n" + " * {@code @创建时间}  ").append(formattedDateTime).append(" \n").append(" * {@code @描述}\n").append(" */").append("\n");
+        codeBuilder.append("/**\n" + " * @author 王蕾\n" + " * {@code @创建时间}  ").append(formattedDateTime).append(" \n").append(" * {@code @描述} "+description+"\n").append(" */").append("\n");
         if (Boolean.TRUE.equals(dataAnnotations)) {
             codeBuilder.append("@Data").append("\n");
         }
