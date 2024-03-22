@@ -1,14 +1,12 @@
 package com.strong.wind.java;
 
 import cn.hutool.core.io.resource.ClassPathResource;
+import cn.hutool.core.map.TableMap;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,7 +25,10 @@ public class TextToJava extends CreateJavaModel{
     }
     @Override
     protected Map<String, JavaModelField> getFieldAndType(String text) {
-        Map<String, JavaModelField> javaModelFieldMap = new HashMap<>();
+        text = text.replace("，字段描述：", ":");
+        text =  text.replace("(参数名：","");
+        text =  text.replace(")","");
+        Map<String, JavaModelField> javaModelFieldMap = new TreeMap<>();
         String fieldPattern = "(\\w+):([\\u4e00-\\u9fa5]+)";
         Pattern pattern = Pattern.compile(fieldPattern);
         Matcher matcher = pattern.matcher(text);

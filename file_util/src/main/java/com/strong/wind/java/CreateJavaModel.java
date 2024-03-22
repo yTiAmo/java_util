@@ -33,10 +33,38 @@ public abstract class CreateJavaModel {
             throw new RuntimeException(e);
         }
         // 打印生成的代码
-
     }
 
+    /**
+     * 生成建表语句
+     * @param text
+     * @param tableName
+     * @param description
+     * @return
+     */
+    public String generateDDL(String text,String tableName,String description) {
+        Map<String, JavaModelField> fieldMap = getFieldAndType(text);
+        List<JavaModelField> fields = getFieldAndComment(fieldMap, text);
+        // 生成实体类代码
+        StringBuilder createTaleDDL = new StringBuilder("CREATE TABLE \"public\"." + tableName + " ( \n");
+        createTaleDDL.append("  \"").append(fields.get(0).getFieldName()).append("\" varchar(100) COLLATE \"pg_catalog\".\"default\" NOT NULL,");
+        for (int i = 1; i < fields.size(); i++) {
+            createTaleDDL.append("\n \"").append(fields.get(i).getFieldName()).append("\" varchar(255) COLLATE \"pg_catalog\".\"default\",");
+        }
+        createTaleDDL.append("\n CONSTRAINT \"").append(tableName).append("_pkey\" PRIMARY KEY (\"").append(fields.get(0).getFieldName()).append("\")\n").append(")\n").append(";");
 
+        createTaleDDL.append("\n" +
+                "ALTER TABLE \"public\".\"t_sync_data_dzxx\" \n" +
+                "  OWNER TO \"postgres\"; \n");
+
+        for (int i = 1; i < fields.size(); i++) {
+            createTaleDDL.append("COMMENT ON COLUMN \"public\".\""+tableName+"\".\""+fields.get(i).getFieldName()+"\" IS '"+fields.get(i).getComment()+"'; \n");
+        }
+        createTaleDDL.append("COMMENT ON TABLE \"public\".\""+tableName+"\" IS '"+description+"';");
+
+        System.out.println(createTaleDDL);
+        return createTaleDDL.toString();
+    }
     /**
      * 正则表达式获取字段名和字段类型
      * @param text ddl创建语句
