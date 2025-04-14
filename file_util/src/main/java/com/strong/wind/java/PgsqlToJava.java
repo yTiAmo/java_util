@@ -22,19 +22,27 @@ public class PgsqlToJava extends CreateJavaModel {
     @Override
     public Map<String, JavaModelField> getFieldAndType(String text) {
         Map<String, JavaModelField> javaModelFieldMap = new LinkedHashMap<>();
-        Map<String, PgsqlToJavaEnum> pgsqlTypeToJavaTypeMap = EnumUtil.getEnumMap(PgsqlToJavaEnum.class);
-        String fieldPattern = "\\\"(\\w+)\\\"\\s+(\\w+).*,";
-        Pattern pattern = Pattern.compile(fieldPattern);
-        Matcher matcher = pattern.matcher(text);
+        try {
 
-        while (matcher.find()) {
-            String columnName = matcher.group(1);
-            String pgsqlType = matcher.group(2);
-            PgsqlToJavaEnum pgsqlEnum = pgsqlTypeToJavaTypeMap.get(pgsqlType.toUpperCase());
-            JavaModelField javaModelField = new JavaModelField();
-            javaModelField.setFieldName(columnName);
-            javaModelField.setJavaType(pgsqlEnum.getJavaType());
-            javaModelFieldMap.put(columnName, javaModelField);
+            Map<String, PgsqlToJavaEnum> pgsqlTypeToJavaTypeMap = EnumUtil.getEnumMap(PgsqlToJavaEnum.class);
+            String fieldPattern = "\\\"(\\w+)\\\"\\s+(\\w+).*,";
+            Pattern pattern = Pattern.compile(fieldPattern);
+            Matcher matcher = pattern.matcher(text);
+
+            while (matcher.find()) {
+                String columnName = matcher.group(1);
+                String pgsqlType = matcher.group(2);
+                PgsqlToJavaEnum pgsqlEnum = pgsqlTypeToJavaTypeMap.get(pgsqlType.toUpperCase());
+                JavaModelField javaModelField = new JavaModelField();
+                javaModelField.setFieldName(columnName);
+                System.out.println(columnName);
+                if (pgsqlEnum != null) {
+                    javaModelField.setJavaType(pgsqlEnum.getJavaType());
+                    javaModelFieldMap.put(columnName, javaModelField);
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return javaModelFieldMap;
     }
@@ -49,9 +57,11 @@ public class PgsqlToJava extends CreateJavaModel {
             String columnName = matcher.group(1);
             JavaModelField modelField = fieldMap.get(columnName);
             String comment = matcher.group(2);
-            modelField.setComment(comment);
-            resultList.add(modelField);
-            fieldMap.remove(columnName);
+            if (modelField!= null) {
+                modelField.setComment(comment);
+                resultList.add(modelField);
+                fieldMap.remove(columnName);
+            }
         }
         resultList.addAll(fieldMap.values());
         return resultList;

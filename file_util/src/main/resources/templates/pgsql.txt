@@ -1,30 +1,26 @@
-CREATE TABLE "public"."t_community_common_phrases" (
-  "id_" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
-  "content_" varchar(4000) COLLATE "pg_catalog"."default",
-  "org_id_" varchar(100) COLLATE "pg_catalog"."default",
-  "user_id_" varchar(100) COLLATE "pg_catalog"."default",
-  "sort_" int8,
-  "create_time_" timestamp(6),
-  "update_time_" timestamp(6),
-  "create_user_" varchar(100) COLLATE "pg_catalog"."default",
-  "update_user_" varchar(100) COLLATE "pg_catalog"."default",
-  "deleted_" int4 DEFAULT 0,
-  "vaild_" int4 DEFAULT 1,
-  CONSTRAINT "changyongyu_pkey" PRIMARY KEY ("id_")
+CREATE TABLE "public"."t_third_bk_yj" (
+  "id" varchar(64) COLLATE "pg_catalog"."default",
+  "fileids" varchar(255) COLLATE "pg_catalog"."default",
+  "glxm" varchar(255) COLLATE "pg_catalog"."default",
+  "glsfzh" varchar(255) COLLATE "pg_catalog"."default",
+  "glqthm" varchar(255) COLLATE "pg_catalog"."default",
+  "hdxq" varchar(255) COLLATE "pg_catalog"."default",
+  "yjlyjb" varchar(255) COLLATE "pg_catalog"."default",
+  "yjsj" varchar(255) COLLATE "pg_catalog"."default",
+  "ryxl" varchar(255) COLLATE "pg_catalog"."default",
+  "sqrzjhm" varchar(255) COLLATE "pg_catalog"."default",
+  "yjlyzj" varchar(255) COLLATE "pg_catalog"."default",
+  "yjlyb" varchar(255) COLLATE "pg_catalog"."default",
+  "ryxldm" varchar(255) COLLATE "pg_catalog"."default",
+  "bklx" varchar(255) COLLATE "pg_catalog"."default",
+  "hdjd" varchar(255) COLLATE "pg_catalog"."default",
+  "hdwd" varchar(255) COLLATE "pg_catalog"."default",
+  "hdfssj" varchar(255) COLLATE "pg_catalog"."default",
+  "hdfsdd" varchar(255) COLLATE "pg_catalog"."default",
+  "hdlyybcn" varchar(255) COLLATE "pg_catalog"."default",
+  "bkxxzj" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
-ALTER TABLE "public"."t_community_common_phrases"
+ALTER TABLE "public"."t_third_bk_yj"
   OWNER TO "postgres";
-
-COMMENT ON COLUMN "public"."t_community_common_phrases"."content_" IS '常用语';
-
-COMMENT ON COLUMN "public"."t_community_common_phrases"."org_id_" IS '机构id';
-
-COMMENT ON COLUMN "public"."t_community_common_phrases"."user_id_" IS '用户id';
-
-COMMENT ON COLUMN "public"."t_community_common_phrases"."sort_" IS '排序';
-
-COMMENT ON COLUMN "public"."t_community_common_phrases"."create_time_" IS '创建时间';
-
-COMMENT ON COLUMN "public"."t_community_common_phrases"."update_time_" IS '更新时间';
